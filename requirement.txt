@@ -23,3 +23,5 @@ pytest-cov==2.4.0
 
 #others
 gunicorn==19.9.0
+conda==4.9.2
+tensorflow==2.4.1
