@@ -16,7 +16,7 @@ from tensorflow.python.keras.applications.resnet import preprocess_input
 
 app = Flask(__name__)
 
-@app.route("/json",methods = ["POST"])
+@app.route("/",methods = ["POST"])
 def ProcessData():
     
     print("enter")
