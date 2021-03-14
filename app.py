@@ -18,9 +18,9 @@ app = Flask(__name__)
 
 @app.route("/",methods = ["POST"])
 def ProcessData():
-    
-    data = request.get_json() # take base64 
+    data = request.get_json(force=True) # take base64 
     image_filename = data['image']
+
     im_bytes = base64.b64decode(image_filename.encode())   # im_bytes is a binary image
     im_file = BytesIO(im_bytes)  # convert image to file-like object
     img = Image.open(im_file)   # img is now PIL Image object
