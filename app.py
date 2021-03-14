@@ -19,7 +19,6 @@ app = Flask(__name__)
 @app.route("/",methods = ["POST"])
 def ProcessData():
     
-    print("enter")
     data = request.get_json() # take base64 
     image_filename = data['image']
     im_bytes = base64.b64decode(image_filename.encode())   # im_bytes is a binary image
@@ -34,7 +33,6 @@ def ProcessData():
     my_model =resnet50.ResNet50(weights = 'imagenet')
     preds = my_model.predict(output)
     most_likely_labels = resnet50.decode_predictions(preds,top=1)
-    print()
     labels = jsonify({'breed' : most_likely_labels[0][0][1],
                       'score' : str(most_likely_labels[0][0][2])})
     print(labels)
