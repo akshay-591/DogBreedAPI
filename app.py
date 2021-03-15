@@ -35,7 +35,6 @@ def ProcessData():
     most_likely_labels = resnet50.decode_predictions(preds,top=1)
     labels = jsonify({'breed' : most_likely_labels[0][0][1],
                       'score' : str(most_likely_labels[0][0][2])})
-    print(labels)
     return labels
 
 if __name__ == '_main_':
