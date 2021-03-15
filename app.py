@@ -24,9 +24,12 @@ def ProcessData():
     im_bytes = base64.b64decode(image_filename.encode())   # im_bytes is a binary image
     im_file = BytesIO(im_bytes)  # convert image to file-like object
     img = Image.open(im_file)   # img is now PIL Image object
-    img.thumbnail(size = (224,224))
+
+    size = (224,224)
+    new_img = img.resize(size=(224,224))
+
     # convert to array
-    img_array = np.array([img_to_array(img)])
+    img_array = np.array([img_to_array(new_img)])
     # scale and return
     output = preprocess_input(img_array)
 
@@ -37,5 +40,5 @@ def ProcessData():
                       'score' : str(most_likely_labels[0][0][2])})
     return labels
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)
